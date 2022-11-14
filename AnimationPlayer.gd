@@ -14,14 +14,13 @@ func _ready():
 
 func on_files_dropped(files):
 	
-	$"../../../DropImagesHere".hide()
-	
 	for file in files:
 		
 		var image = Image.load_from_file(file)
 		if not image is Image:
 			return #don't import non image files
-			
+		
+		%onboarding.progress += 1
 		
 		#load a file into a godot sprite
 		var texture = ImageTexture.create_from_image(image)
@@ -75,6 +74,8 @@ func _process(delta):
 		#record position keyframes when held
 		#MAYBE: copy this to recorded other track at the same time
 		
+		%onboarding.progress += 1
+		
 		var animation = get_animation(assigned_animation)
 		var input_value = get_viewport().get_mouse_position()
 		time = current_animation_position
@@ -92,7 +93,10 @@ func _process(delta):
 				seek(time, true)
 	
 	
-	if Input.is_action_pressed("hide"):
+	if Input.is_action_pressed("visible"):
+		
+		%onboarding.progress += 1
+		
 		var animation = get_animation(assigned_animation)
 		var input_value = Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)
 		time = current_animation_position
@@ -149,6 +153,10 @@ func _on_timeline_value_changed(value):
 	seek(value, true)
 
 
+func _on_print_button_toggled(button_pressed):
+	is_printing = button_pressed
+
+
 func _on_no_pos_pressed():
 	
 	var animation = get_animation(assigned_animation)
@@ -160,5 +168,12 @@ func _on_no_pos_pressed():
 			animation.remove_track(track_idx)
 
 
-func _on_print_button_toggled(button_pressed):
-	is_printing = button_pressed
+func _on_no_vis_pressed():
+	
+	var animation = get_animation(assigned_animation)
+	
+	for node in get_tree().get_nodes_in_group(group):
+		var track_path = str(node.name,":","visible")
+		var track_idx = animation.find_track(track_path, Animation.TYPE_VALUE)
+		if track_idx != -FAILED:
+			animation.remove_track(track_idx)
