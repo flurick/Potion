@@ -72,7 +72,7 @@ func _process(delta):
 	if Input.is_action_pressed("position"):
 		
 		#record position keyframes when held
-		#MAYBE: copy this to recorded other track at the same time
+		#MAYBE: refactor to recorded other track at the same time
 		
 		%onboarding.progress += 1
 		
@@ -90,6 +90,28 @@ func _process(delta):
 					track_idx = animation.add_track(Animation.TYPE_VALUE, 0)
 					animation.track_set_path(track_idx, track_path)
 				animation.track_insert_key(track_idx, time, input_value)
+				seek(time, true)
+	
+	
+	if Input.is_action_pressed("rotation"):
+		
+		%onboarding.progress += 1
+		
+		var animation = get_animation(assigned_animation)
+		var input_value = get_viewport().get_mouse_position()
+		time = current_animation_position
+		
+		for node in get_tree().get_nodes_in_group(group):
+			
+			var track_path = str(node.name,":","rotation")
+			
+			if animation:
+				var track_idx = animation.find_track(track_path, Animation.TYPE_VALUE)
+				if track_idx == -FAILED:
+					track_idx = animation.add_track(Animation.TYPE_VALUE, 0)
+					animation.track_set_path(track_idx, track_path)
+				node.look_at(input_value)
+				animation.track_insert_key(track_idx, time, node.rotation)
 				seek(time, true)
 	
 	
@@ -174,6 +196,17 @@ func _on_no_vis_pressed():
 	
 	for node in get_tree().get_nodes_in_group(group):
 		var track_path = str(node.name,":","visible")
+		var track_idx = animation.find_track(track_path, Animation.TYPE_VALUE)
+		if track_idx != -FAILED:
+			animation.remove_track(track_idx)
+
+
+func _on_no_rot_pressed():
+	
+	var animation = get_animation(assigned_animation)
+	
+	for node in get_tree().get_nodes_in_group(group):
+		var track_path = str(node.name,":","rotation")
 		var track_idx = animation.find_track(track_path, Animation.TYPE_VALUE)
 		if track_idx != -FAILED:
 			animation.remove_track(track_idx)

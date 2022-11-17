@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://s1ibsgb2hrak"]
+[gd_scene load_steps=22 format=3 uid="uid://s1ibsgb2hrak"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_vfhwu"]
 [ext_resource type="Script" path="res://AnimationPlayer.gd" id="2_y215d"]
@@ -82,6 +82,12 @@ action = &"position"
 
 [sub_resource type="Shortcut" id="Shortcut_b125g"]
 events = [SubResource("InputEventAction_8mlpo")]
+
+[sub_resource type="InputEventAction" id="InputEventAction_viw6x"]
+action = &"rotation"
+
+[sub_resource type="Shortcut" id="Shortcut_cynus"]
+events = [SubResource("InputEventAction_viw6x")]
 
 [sub_resource type="InputEventAction" id="InputEventAction_waeyv"]
 action = &"visible"
@@ -233,7 +239,7 @@ anchor_right = 1.0
 offset_left = -196.0
 offset_top = 5.0
 offset_right = -43.0
-offset_bottom = 118.0
+offset_bottom = 113.0
 grow_horizontal = 0
 
 [node name="GridContainer" type="VBoxContainer" parent="Tracks"]
@@ -241,16 +247,15 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 7.0
-offset_top = 27.0
-offset_right = -5.0
-offset_bottom = -5.0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = -3.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Control" type="HBoxContainer" parent="Tracks/GridContainer"]
 layout_mode = 2
-offset_right = 141.0
+offset_right = 147.0
 offset_bottom = 31.0
 
 [node name="Label" type="Label" parent="Tracks/GridContainer/Control"]
@@ -269,9 +274,10 @@ clip_text = true
 [node name="Position" type="Button" parent="Tracks/GridContainer/Control"]
 layout_mode = 2
 offset_left = 42.0
-offset_right = 113.0
+offset_right = 119.0
 offset_bottom = 31.0
 size_flags_horizontal = 3
+focus_mode = 0
 theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
 shortcut = SubResource("Shortcut_b125g")
 text = "Position
@@ -281,17 +287,61 @@ flat = true
 [node name="no_pos" type="Button" parent="Tracks/GridContainer/Control"]
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
-offset_left = 117.0
-offset_right = 141.0
+offset_left = 123.0
+offset_right = 147.0
 offset_bottom = 31.0
 tooltip_text = "Clear Track"
+focus_mode = 0
 text = "x"
+flat = true
+
+[node name="Control3" type="HBoxContainer" parent="Tracks/GridContainer"]
+layout_mode = 2
+offset_top = 35.0
+offset_right = 147.0
+offset_bottom = 66.0
+
+[node name="Label" type="Label" parent="Tracks/GridContainer/Control3"]
+custom_minimum_size = Vector2(38, 24)
+layout_mode = 2
+offset_top = 2.0
+offset_right = 38.0
+offset_bottom = 28.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_d206y")
+text = "R"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+
+[node name="Rotation" type="Button" parent="Tracks/GridContainer/Control3"]
+layout_mode = 2
+offset_left = 42.0
+offset_right = 119.0
+offset_bottom = 31.0
+size_flags_horizontal = 3
+focus_mode = 0
+theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
+shortcut = SubResource("Shortcut_cynus")
+text = "Rotation"
+flat = true
+
+[node name="no_rot" type="Button" parent="Tracks/GridContainer/Control3"]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+offset_left = 123.0
+offset_right = 147.0
+offset_bottom = 31.0
+tooltip_text = "Clear Track"
+focus_mode = 0
+text = "x"
+flat = true
 
 [node name="Control2" type="HBoxContainer" parent="Tracks/GridContainer"]
 layout_mode = 2
-offset_top = 35.0
-offset_right = 141.0
-offset_bottom = 66.0
+offset_top = 70.0
+offset_right = 147.0
+offset_bottom = 101.0
 
 [node name="Label" type="Label" parent="Tracks/GridContainer/Control2"]
 custom_minimum_size = Vector2(38, 24)
@@ -309,9 +359,10 @@ clip_text = true
 [node name="Visible" type="Button" parent="Tracks/GridContainer/Control2"]
 layout_mode = 2
 offset_left = 42.0
-offset_right = 113.0
+offset_right = 119.0
 offset_bottom = 31.0
 size_flags_horizontal = 3
+focus_mode = 0
 theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
 shortcut = SubResource("Shortcut_bc6a2")
 text = "Visible"
@@ -320,11 +371,13 @@ flat = true
 [node name="no_vis" type="Button" parent="Tracks/GridContainer/Control2"]
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
-offset_left = 117.0
-offset_right = 141.0
+offset_left = 123.0
+offset_right = 147.0
 offset_bottom = 31.0
 tooltip_text = "Clear Track"
+focus_mode = 0
 text = "x"
+flat = true
 
 [node name="onboarding" type="Control" parent="."]
 unique_name_in_owner = true
@@ -336,6 +389,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("3_ts8js")
+metadata/_edit_lock_ = true
 
 [node name="DropImagesHere" type="TextureRect" parent="onboarding"]
 modulate = Color(1, 1, 1, 0.286275)
@@ -447,6 +501,7 @@ polygon = PackedVector2Array(1002, 516, 1008, 516, 1009, 518, 1020, 518, 1020, 5
 [connection signal="drag_ended" from="Panel/HBoxContainer/timeline" to="SubViewportContainer/SubViewport/Player" method="_on_timeline_drag_ended"]
 [connection signal="value_changed" from="Panel/HBoxContainer/timeline" to="SubViewportContainer/SubViewport/Player" method="_on_timeline_value_changed"]
 [connection signal="pressed" from="Tracks/GridContainer/Control/no_pos" to="SubViewportContainer/SubViewport/Player" method="_on_no_pos_pressed"]
+[connection signal="pressed" from="Tracks/GridContainer/Control3/no_rot" to="SubViewportContainer/SubViewport/Player" method="_on_no_rot_pressed"]
 [connection signal="pressed" from="Tracks/GridContainer/Control2/no_vis" to="SubViewportContainer/SubViewport/Player" method="_on_no_vis_pressed"]
 [connection signal="gui_input" from="onboarding/Label" to="onboarding" method="_on_label_gui_input"]
 [connection signal="toggled" from="Panel2/HBoxContainer/Print_Button" to="SubViewportContainer/SubViewport/Player" method="_on_print_button_toggled"]
