@@ -556,7 +556,6 @@ polygon = PackedVector2Array(1002, 516, 1008, 516, 1009, 518, 1020, 518, 1020, 5
 [connection signal="pressed" from="Tracks/GridContainer/Control3/no_rot" to="SubViewportContainer/SubViewport/Player" method="_on_no_rot_pressed"]
 [connection signal="pressed" from="Tracks/GridContainer/Control2/no_vis" to="SubViewportContainer/SubViewport/Player" method="_on_no_vis_pressed"]
 [connection signal="pressed" from="Tracks/GridContainer/Control4/no_scale" to="SubViewportContainer/SubViewport/Player" method="_on_no_scale_pressed"]
-[connection signal="gui_input" from="onboarding/Label" to="onboarding" method="_on_label_gui_input"]
 [connection signal="pressed" from="Drawings/v/Add" to="SubViewportContainer/SubViewport/Player" method="_on_add_pressed"]
 [connection signal="toggled" from="Panel2/HBoxContainer/Print_Button" to="SubViewportContainer/SubViewport/Player" method="_on_print_button_toggled"]
 [connection signal="pressed" from="Panel2/HBoxContainer/Button" to="." method="_on_button_pressed"]

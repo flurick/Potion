@@ -2,12 +2,6 @@ extends Control
 
 @onready var player:AnimationPlayer = %Player
 
-func _input(event):
-	if event.is_action("ui_home"):
-		player.seek_home()
-	if event.is_action("ui_end"):
-		player.seek_end()
-
 func _ready():
 	get_viewport().files_dropped.connect(%Player.on_files_dropped)
 #	return
