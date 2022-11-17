@@ -18,7 +18,7 @@ func on_files_dropped(files):
 		
 		var image = Image.load_from_file(file)
 		if not image is Image:
-			return #don't import non image files
+			return #ignore non image files
 		
 		%onboarding.progress += 1
 		
@@ -27,16 +27,21 @@ func on_files_dropped(files):
 		var sprite = Sprite2D.new()
 		sprite.texture = texture
 		get_parent().add_child(sprite)
+		add_icon(sprite, file, texture)
+
+
+func add_icon(node, tooltip, icon_texture=null):
 		
 		#add an icon for selecting ui selection
 		var icon:Button = Button.new()
 		#icon.text = str(get_child_count())
 		icon.custom_minimum_size = Vector2(38,38)
-		icon.tooltip_text = file
+		icon.tooltip_text = tooltip
 		icon.toggle_mode = true
-		icon.set_meta("node", sprite)
+		icon.set_meta("node", node)
 		icon.expand_icon = true
-		icon.icon = texture
+		if icon_texture:
+			icon.icon = icon_texture
 		icon.pressed.connect(icon_pressed.bind(icon))
 		icon.focus_mode = Control.FOCUS_NONE
 		icon.set("theme_override_colors/icon_normal_color", Color(1,1,1, 0.5))
@@ -44,7 +49,7 @@ func on_files_dropped(files):
 		
 		#set new images as "grabbed"
 		icon.button_pressed = true
-		sprite.add_to_group(group)
+		node.add_to_group(group)
 		var window = Window.new()
 		window.grab_focus()
 
@@ -110,7 +115,11 @@ func _process(delta):
 				if track_idx == -FAILED:
 					track_idx = animation.add_track(Animation.TYPE_VALUE, 0)
 					animation.track_set_path(track_idx, track_path)
-				node.look_at(input_value)
+				
+				if node is Node2D:
+					node.look_at(input_value)
+				else:
+					node.rotation = input_value.x*0.02
 				animation.track_insert_key(track_idx, time, node.rotation)
 				seek(time, true)
 	
@@ -210,3 +219,17 @@ func _on_no_rot_pressed():
 		var track_idx = animation.find_track(track_path, Animation.TYPE_VALUE)
 		if track_idx != -FAILED:
 			animation.remove_track(track_idx)
+
+
+func _on_add_pressed():
+	
+	#add a new label and its icon to the scene
+	var label = LineEdit.new()
+	label.expand_to_text_length = true
+	label.text = "potion" 
+	label.flat = true 
+	label.position = get_viewport().size * 0.5
+	get_parent().add_child(label)
+	add_icon(label, str("Label ", get_parent().get_child_count()) )
+	
+

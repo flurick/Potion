@@ -111,12 +111,14 @@ size_flags_vertical = 3
 script = ExtResource("1_vfhwu")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+show_behind_parent = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+focus_mode = 1
 stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
@@ -124,6 +126,7 @@ unique_name_in_owner = true
 disable_3d = true
 transparent_bg = true
 handle_input_locally = false
+gui_snap_controls_to_pixels = false
 size = Vector2i(1152, 648)
 render_target_update_mode = 4
 
@@ -170,7 +173,6 @@ offset_bottom = 48.0
 grow_horizontal = 2
 grow_vertical = 0
 tooltip_text = "Play / Pause"
-focus_mode = 0
 theme_override_font_sizes/font_size = 60
 theme_override_styles/normal = SubResource("StyleBoxFlat_05nw1")
 theme_override_styles/hover = SubResource("StyleBoxFlat_2bl6a")
@@ -365,7 +367,7 @@ size_flags_horizontal = 3
 focus_mode = 0
 theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
 shortcut = SubResource("Shortcut_bc6a2")
-text = "Visible"
+text = "Hide"
 flat = true
 
 [node name="no_vis" type="Button" parent="Tracks/GridContainer/Control2"]
@@ -445,6 +447,14 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="Add" type="Button" parent="Drawings/v"]
+layout_mode = 2
+offset_right = 39.0
+offset_bottom = 31.0
+tooltip_text = "Add Text"
+text = "+"
+flat = true
+
 [node name="Panel2" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = 3
@@ -504,5 +514,6 @@ polygon = PackedVector2Array(1002, 516, 1008, 516, 1009, 518, 1020, 518, 1020, 5
 [connection signal="pressed" from="Tracks/GridContainer/Control3/no_rot" to="SubViewportContainer/SubViewport/Player" method="_on_no_rot_pressed"]
 [connection signal="pressed" from="Tracks/GridContainer/Control2/no_vis" to="SubViewportContainer/SubViewport/Player" method="_on_no_vis_pressed"]
 [connection signal="gui_input" from="onboarding/Label" to="onboarding" method="_on_label_gui_input"]
+[connection signal="pressed" from="Drawings/v/Add" to="SubViewportContainer/SubViewport/Player" method="_on_add_pressed"]
 [connection signal="toggled" from="Panel2/HBoxContainer/Print_Button" to="SubViewportContainer/SubViewport/Player" method="_on_print_button_toggled"]
 [connection signal="pressed" from="Panel2/HBoxContainer/Button" to="." method="_on_button_pressed"]
