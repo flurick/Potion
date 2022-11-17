@@ -15,13 +15,13 @@ func _ready():
 
 func on_files_dropped(files):
 	
+	%onboarding.progress += 1
+	
 	for file in files:
 		
 		var image = Image.load_from_file(file)
 		if not image is Image:
 			return #ignore non image files
-		
-		%onboarding.progress += 1
 		
 		#load a file into a godot sprite
 		var texture = ImageTexture.create_from_image(image)
@@ -91,6 +91,8 @@ func pause():
 
 func record_key(node, track, key_value):
 	
+	%onboarding.progress += 1
+	
 	var animation = get_animation(assigned_animation)
 	#var input_value = get_viewport().get_mouse_position()
 	time = current_animation_position
@@ -140,7 +142,7 @@ func _process(delta):
 		
 		if is_printing:
 			var frame = %SubViewport.get_texture()
-			frame.get_image().save_png( str("user://","potion.",Time.get_date_string_from_system(),".",time,".png") )
+			frame.get_image().save_png( str("user://","potion.",Time.get_date_string_from_system(),".",int(time*100),".png") )
 
 
 func _input(event):
