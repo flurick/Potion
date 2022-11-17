@@ -10,6 +10,7 @@ func _input(event):
 
 func _ready():
 	get_viewport().files_dropped.connect(%Player.on_files_dropped)
+#	return
 	OS.alert("Still on the todo list:
   ·  The main window does is not focused when dropping a file in the scene
   ·  Moving drawings are a bit jumpy

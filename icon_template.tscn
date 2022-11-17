@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://dkpx8jbkexink"]
+
+[node name="icon_template" type="Button"]
+custom_minimum_size = Vector2(38, 38)
+offset_right = 39.0
+offset_bottom = 38.0
+tooltip_text = "Add Text"
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 0.54902)
+toggle_mode = true
+text = "·"
+flat = true
+clip_text = true
+icon_alignment = 1
+expand_icon = true

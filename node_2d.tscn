@@ -90,7 +90,7 @@ action = &"rotation"
 events = [SubResource("InputEventAction_viw6x")]
 
 [sub_resource type="InputEventAction" id="InputEventAction_waeyv"]
-action = &"visible"
+action = &"scale"
 
 [sub_resource type="Shortcut" id="Shortcut_bc6a2"]
 events = [SubResource("InputEventAction_waeyv")]
@@ -241,7 +241,7 @@ anchor_right = 1.0
 offset_left = -196.0
 offset_top = 5.0
 offset_right = -43.0
-offset_bottom = 113.0
+offset_bottom = 177.0
 grow_horizontal = 0
 
 [node name="GridContainer" type="VBoxContainer" parent="Tracks"]
@@ -371,6 +371,48 @@ text = "Hide"
 flat = true
 
 [node name="no_vis" type="Button" parent="Tracks/GridContainer/Control2"]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+offset_left = 123.0
+offset_right = 147.0
+offset_bottom = 31.0
+tooltip_text = "Clear Track"
+focus_mode = 0
+text = "x"
+flat = true
+
+[node name="Control4" type="HBoxContainer" parent="Tracks/GridContainer"]
+layout_mode = 2
+offset_top = 105.0
+offset_right = 147.0
+offset_bottom = 136.0
+
+[node name="Label" type="Label" parent="Tracks/GridContainer/Control4"]
+custom_minimum_size = Vector2(38, 24)
+layout_mode = 2
+offset_top = 2.0
+offset_right = 38.0
+offset_bottom = 28.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_d206y")
+text = "S"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+
+[node name="Visible" type="Button" parent="Tracks/GridContainer/Control4"]
+layout_mode = 2
+offset_left = 42.0
+offset_right = 119.0
+offset_bottom = 31.0
+size_flags_horizontal = 3
+focus_mode = 0
+theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
+shortcut = SubResource("Shortcut_bc6a2")
+text = "Scale"
+flat = true
+
+[node name="no_scale" type="Button" parent="Tracks/GridContainer/Control4"]
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 offset_left = 123.0
@@ -513,6 +555,7 @@ polygon = PackedVector2Array(1002, 516, 1008, 516, 1009, 518, 1020, 518, 1020, 5
 [connection signal="pressed" from="Tracks/GridContainer/Control/no_pos" to="SubViewportContainer/SubViewport/Player" method="_on_no_pos_pressed"]
 [connection signal="pressed" from="Tracks/GridContainer/Control3/no_rot" to="SubViewportContainer/SubViewport/Player" method="_on_no_rot_pressed"]
 [connection signal="pressed" from="Tracks/GridContainer/Control2/no_vis" to="SubViewportContainer/SubViewport/Player" method="_on_no_vis_pressed"]
+[connection signal="pressed" from="Tracks/GridContainer/Control4/no_scale" to="SubViewportContainer/SubViewport/Player" method="_on_no_scale_pressed"]
 [connection signal="gui_input" from="onboarding/Label" to="onboarding" method="_on_label_gui_input"]
 [connection signal="pressed" from="Drawings/v/Add" to="SubViewportContainer/SubViewport/Player" method="_on_add_pressed"]
 [connection signal="toggled" from="Panel2/HBoxContainer/Print_Button" to="SubViewportContainer/SubViewport/Player" method="_on_print_button_toggled"]
