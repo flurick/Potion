@@ -4,10 +4,11 @@ extends Control
 
 func _ready():
 	get_viewport().files_dropped.connect(%Player.on_files_dropped)
-#	return
+	return
+	
 	OS.alert("Still on the todo list:
   ·  The main window does is not focused when dropping a file in the scene
-  ·  Moving drawings are a bit jumpy
+  ·  Moving drawings are a bit jumpy (ignores current value)
   ·  Rendering is a image sequence (PNG files)
   ·  Some frames are probably skipped when rendering
   ·  Projects can not be saved",

@@ -10,7 +10,7 @@ func _ready():
 	
 	playback_active = true
 	play("default") #load the default animation timeline
-	pause()
+	set_paused()
 
 
 func on_files_dropped(files):
@@ -84,7 +84,7 @@ func adopt(node, new_parent):
 	return node
 
 
-func pause():
+func set_paused():
 	%play.button_pressed = false
 	stop(false) #pause is the same as stop, just without resetting the time
 
@@ -117,25 +117,6 @@ var m_offset:Vector2
 var click:bool
 func _process(delta):
 	
-	m = get_viewport().get_mouse_position()
-	click = Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)
-	
-	if Input.is_action_pressed("position"):
-		for node in get_tree().get_nodes_in_group(group):
-			record_key(node, "position", m)
-	
-	if Input.is_action_pressed("rotation"):	
-		for node in get_tree().get_nodes_in_group(group):
-			record_key(node, "rotation", m.x*0.02)
-	
-	if Input.is_action_pressed("visible"):
-		for node in get_tree().get_nodes_in_group(group):
-			record_key(node, "visible", click)
-	
-	if Input.is_action_pressed("scale"):
-		for node in get_tree().get_nodes_in_group(group):
-			record_key(node, "scale", m*0.01)
-	
 	if is_playing():
 		time = current_animation_position
 		%timeline.value = time
@@ -144,8 +125,29 @@ func _process(delta):
 			var frame = %SubViewport.get_texture()
 			frame.get_image().save_png( str("user://","potion.",Time.get_date_string_from_system(),".",int(time*100),".png") )
 
-
 func _input(event):
+	
+	if event is InputEventMouse:
+	
+		m = get_viewport().get_mouse_position()
+		click = event.is_pressed()
+		
+		if Input.is_action_pressed("position"):
+			for node in get_tree().get_nodes_in_group(group):
+				record_key(node, "position", m)
+		
+		if Input.is_action_pressed("rotation"):	
+			for node in get_tree().get_nodes_in_group(group):
+				record_key(node, "rotation", m.x*0.02)
+		
+		if Input.is_action_pressed("visible"):
+			for node in get_tree().get_nodes_in_group(group):
+				record_key(node, "visible", !click)
+		
+		if Input.is_action_pressed("scale"):
+			for node in get_tree().get_nodes_in_group(group):
+				record_key(node, "scale", m*0.01)
+		
 	
 	if event.is_action("ui_page_up"):
 		var node = get_tree().get_first_node_in_group(group)
@@ -162,25 +164,25 @@ func _input(event):
 
 func _on_play_toggled(button_pressed):
 	if button_pressed: play()
-	else: pause()
+	else: set_paused()
 
 
 func _on_timeline_drag_ended(value_changed):
 	#not sure why we can update the timeline value from here?
 	#you might think we needed to use seek(), and set the value indirectly that way
-	pause()
+	set_paused()
 	#seek(value_changed, %timeline.value)
 #	print(current_animation_position, %timeline.value)
 
 
 func _on_animation_finished(anim_name):
-	pause()
+	set_paused()
 
 
 func seek_home():
 	#%timeline.value = 0
 	seek(0, true)
-	pause()
+	set_paused()
 
 
 func seek_end():
@@ -212,6 +214,7 @@ func _on_no_vis_pressed():
 	var animation = get_animation(assigned_animation)
 	
 	for node in get_tree().get_nodes_in_group(group):
+		node.show()
 		var track_path = str(node.name,":","visible")
 		var track_idx = animation.find_track(track_path, Animation.TYPE_VALUE)
 		if track_idx != -FAILED:
@@ -250,3 +253,11 @@ func _on_no_scale_pressed():
 		var track_idx = animation.find_track(track_path, Animation.TYPE_VALUE)
 		if track_idx != -FAILED:
 			animation.remove_track(track_idx)
+
+
+func _on_add_2_pressed():
+	#add a new drawing and its icon to the scene
+	var drawing = Line2D.new()
+	drawing.position = get_viewport().size * 0.5
+	get_parent().add_child(drawing)
+	add_icon(drawing, str("Drawing ", get_parent().get_child_count()) )

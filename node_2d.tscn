@@ -1,9 +1,10 @@
-[gd_scene load_steps=22 format=3 uid="uid://s1ibsgb2hrak"]
+[gd_scene load_steps=24 format=3 uid="uid://s1ibsgb2hrak"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_vfhwu"]
 [ext_resource type="Script" path="res://AnimationPlayer.gd" id="2_y215d"]
 [ext_resource type="Texture2D" uid="uid://ck2nb3w88xjn2" path="res://drop_images_here.png" id="3_fyhgc"]
 [ext_resource type="Script" path="res://user_guide.gd" id="3_ts8js"]
+[ext_resource type="Texture2D" uid="uid://bdq722xgwoxbn" path="res://potion_logo.png" id="5_vbcbi"]
 
 [sub_resource type="Animation" id="Animation_b77ox"]
 length = 0.001
@@ -99,6 +100,9 @@ events = [SubResource("InputEventAction_waeyv")]
 shadow_size = 5
 shadow_color = Color(0, 0, 0, 0.713726)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8mlfn"]
+bg_color = Color(0, 0, 0, 0.615686)
+
 [node name="Control" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -168,10 +172,6 @@ grow_vertical = 0
 unique_name_in_owner = true
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
-offset_right = 48.0
-offset_bottom = 48.0
-grow_horizontal = 2
-grow_vertical = 0
 tooltip_text = "Play / Pause"
 theme_override_font_sizes/font_size = 60
 theme_override_styles/normal = SubResource("StyleBoxFlat_05nw1")
@@ -187,17 +187,10 @@ polygon = PackedVector2Array(13, 15, 39, 24, 13, 31)
 [node name="Control" type="Control" parent="Panel/HBoxContainer"]
 custom_minimum_size = Vector2(12, 12)
 layout_mode = 2
-anchors_preset = 0
-offset_left = 52.0
-offset_right = 64.0
-offset_bottom = 48.0
 
 [node name="timeline" type="HSlider" parent="Panel/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-offset_left = 68.0
-offset_right = 1108.0
-offset_bottom = 48.0
 size_flags_horizontal = 3
 size_flags_vertical = 1
 max_value = 30.0
@@ -206,20 +199,11 @@ step = 0.01
 [node name="Control2" type="Control" parent="Panel/HBoxContainer"]
 custom_minimum_size = Vector2(12, 12)
 layout_mode = 2
-anchors_preset = 0
-offset_left = 1112.0
-offset_right = 1124.0
-offset_bottom = 48.0
 
 [node name="Button2" type="Button" parent="Panel/HBoxContainer"]
 visible = false
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
-offset_left = 1076.0
-offset_right = 1124.0
-offset_bottom = 48.0
-grow_horizontal = 2
-grow_vertical = 0
 tooltip_text = "Auto play the next animation"
 focus_mode = 0
 theme_override_font_sizes/font_size = 60
@@ -238,10 +222,10 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -196.0
-offset_top = 5.0
-offset_right = -43.0
-offset_bottom = 177.0
+offset_left = -212.0
+offset_top = 21.0
+offset_right = -59.0
+offset_bottom = 193.0
 grow_horizontal = 0
 
 [node name="GridContainer" type="VBoxContainer" parent="Tracks"]
@@ -257,15 +241,10 @@ grow_vertical = 2
 
 [node name="Control" type="HBoxContainer" parent="Tracks/GridContainer"]
 layout_mode = 2
-offset_right = 147.0
-offset_bottom = 31.0
 
 [node name="Label" type="Label" parent="Tracks/GridContainer/Control"]
 custom_minimum_size = Vector2(38, 24)
 layout_mode = 2
-offset_top = 2.0
-offset_right = 38.0
-offset_bottom = 28.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_styles/normal = SubResource("StyleBoxFlat_d206y")
 text = "G"
@@ -275,9 +254,6 @@ clip_text = true
 
 [node name="Position" type="Button" parent="Tracks/GridContainer/Control"]
 layout_mode = 2
-offset_left = 42.0
-offset_right = 119.0
-offset_bottom = 31.0
 size_flags_horizontal = 3
 focus_mode = 0
 theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
@@ -289,9 +265,6 @@ flat = true
 [node name="no_pos" type="Button" parent="Tracks/GridContainer/Control"]
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
-offset_left = 123.0
-offset_right = 147.0
-offset_bottom = 31.0
 tooltip_text = "Clear Track"
 focus_mode = 0
 text = "x"
@@ -299,16 +272,10 @@ flat = true
 
 [node name="Control3" type="HBoxContainer" parent="Tracks/GridContainer"]
 layout_mode = 2
-offset_top = 35.0
-offset_right = 147.0
-offset_bottom = 66.0
 
 [node name="Label" type="Label" parent="Tracks/GridContainer/Control3"]
 custom_minimum_size = Vector2(38, 24)
 layout_mode = 2
-offset_top = 2.0
-offset_right = 38.0
-offset_bottom = 28.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_styles/normal = SubResource("StyleBoxFlat_d206y")
 text = "R"
@@ -318,9 +285,6 @@ clip_text = true
 
 [node name="Rotation" type="Button" parent="Tracks/GridContainer/Control3"]
 layout_mode = 2
-offset_left = 42.0
-offset_right = 119.0
-offset_bottom = 31.0
 size_flags_horizontal = 3
 focus_mode = 0
 theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
@@ -331,9 +295,6 @@ flat = true
 [node name="no_rot" type="Button" parent="Tracks/GridContainer/Control3"]
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
-offset_left = 123.0
-offset_right = 147.0
-offset_bottom = 31.0
 tooltip_text = "Clear Track"
 focus_mode = 0
 text = "x"
@@ -341,16 +302,10 @@ flat = true
 
 [node name="Control2" type="HBoxContainer" parent="Tracks/GridContainer"]
 layout_mode = 2
-offset_top = 70.0
-offset_right = 147.0
-offset_bottom = 101.0
 
 [node name="Label" type="Label" parent="Tracks/GridContainer/Control2"]
 custom_minimum_size = Vector2(38, 24)
 layout_mode = 2
-offset_top = 2.0
-offset_right = 38.0
-offset_bottom = 28.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_styles/normal = SubResource("StyleBoxFlat_d206y")
 text = "H"
@@ -360,9 +315,6 @@ clip_text = true
 
 [node name="Visible" type="Button" parent="Tracks/GridContainer/Control2"]
 layout_mode = 2
-offset_left = 42.0
-offset_right = 119.0
-offset_bottom = 31.0
 size_flags_horizontal = 3
 focus_mode = 0
 theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
@@ -373,9 +325,6 @@ flat = true
 [node name="no_vis" type="Button" parent="Tracks/GridContainer/Control2"]
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
-offset_left = 123.0
-offset_right = 147.0
-offset_bottom = 31.0
 tooltip_text = "Clear Track"
 focus_mode = 0
 text = "x"
@@ -383,16 +332,10 @@ flat = true
 
 [node name="Control4" type="HBoxContainer" parent="Tracks/GridContainer"]
 layout_mode = 2
-offset_top = 105.0
-offset_right = 147.0
-offset_bottom = 136.0
 
 [node name="Label" type="Label" parent="Tracks/GridContainer/Control4"]
 custom_minimum_size = Vector2(38, 24)
 layout_mode = 2
-offset_top = 2.0
-offset_right = 38.0
-offset_bottom = 28.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_styles/normal = SubResource("StyleBoxFlat_d206y")
 text = "S"
@@ -402,9 +345,6 @@ clip_text = true
 
 [node name="Visible" type="Button" parent="Tracks/GridContainer/Control4"]
 layout_mode = 2
-offset_left = 42.0
-offset_right = 119.0
-offset_bottom = 31.0
 size_flags_horizontal = 3
 focus_mode = 0
 theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
@@ -415,9 +355,6 @@ flat = true
 [node name="no_scale" type="Button" parent="Tracks/GridContainer/Control4"]
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
-offset_left = 123.0
-offset_right = 147.0
-offset_bottom = 31.0
 tooltip_text = "Clear Track"
 focus_mode = 0
 text = "x"
@@ -425,6 +362,7 @@ flat = true
 
 [node name="onboarding" type="Control" parent="."]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -480,6 +418,7 @@ offset_left = -39.0
 offset_bottom = -78.0
 grow_horizontal = 0
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_8mlfn")
 
 [node name="v" type="VBoxContainer" parent="Drawings"]
 layout_mode = 1
@@ -491,11 +430,59 @@ grow_vertical = 2
 
 [node name="Add" type="Button" parent="Drawings/v"]
 layout_mode = 2
-offset_right = 39.0
-offset_bottom = 31.0
 tooltip_text = "Add Text"
-text = "+"
+text = "T"
 flat = true
+
+[node name="Add2" type="Button" parent="Drawings/v"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+tooltip_text = "Add Drawing"
+icon = ExtResource("5_vbcbi")
+flat = true
+expand_icon = true
+
+[node name="HSeparator" type="HSeparator" parent="Drawings/v"]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="Drawings"]
+modulate = Color(0.117647, 0.117647, 0.117647, 1)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+
+[node name="ColorRect" type="ColorRect" parent="Drawings/Control"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -2.0
+offset_top = -2.0
+grow_vertical = 0
+
+[node name="ColorRect2" type="ColorRect" parent="Drawings/Control"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = -3.0
+offset_bottom = -2.0
+grow_vertical = 0
+
+[node name="ColorRect3" type="ColorRect" parent="Drawings/Control"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -3.0
+offset_top = -1.0
+offset_right = -2.0
+grow_vertical = 0
 
 [node name="Panel2" type="Panel" parent="."]
 layout_mode = 1
@@ -525,11 +512,6 @@ alignment = 1
 
 [node name="Print_Button" type="CheckBox" parent="Panel2/HBoxContainer"]
 layout_mode = 2
-offset_left = 13.0
-offset_right = 153.0
-offset_bottom = 32.0
-grow_horizontal = 0
-grow_vertical = 0
 tooltip_text = "Save  played frames as .png files "
 text = "Live Render to"
 alignment = 1
@@ -537,11 +519,6 @@ alignment = 1
 [node name="Button" type="Button" parent="Panel2/HBoxContainer"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
-offset_left = 157.0
-offset_right = 189.0
-offset_bottom = 32.0
-grow_horizontal = 0
-grow_vertical = 0
 
 [node name="Polygon2D" type="Polygon2D" parent="Panel2/HBoxContainer/Button"]
 position = Vector2(-994, -505.5)
@@ -557,5 +534,6 @@ polygon = PackedVector2Array(1002, 516, 1008, 516, 1009, 518, 1020, 518, 1020, 5
 [connection signal="pressed" from="Tracks/GridContainer/Control2/no_vis" to="SubViewportContainer/SubViewport/Player" method="_on_no_vis_pressed"]
 [connection signal="pressed" from="Tracks/GridContainer/Control4/no_scale" to="SubViewportContainer/SubViewport/Player" method="_on_no_scale_pressed"]
 [connection signal="pressed" from="Drawings/v/Add" to="SubViewportContainer/SubViewport/Player" method="_on_add_pressed"]
+[connection signal="pressed" from="Drawings/v/Add2" to="SubViewportContainer/SubViewport/Player" method="_on_add_2_pressed"]
 [connection signal="toggled" from="Panel2/HBoxContainer/Print_Button" to="SubViewportContainer/SubViewport/Player" method="_on_print_button_toggled"]
 [connection signal="pressed" from="Panel2/HBoxContainer/Button" to="." method="_on_button_pressed"]
