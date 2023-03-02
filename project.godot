@@ -10,10 +10,10 @@ config_version=5
 
 [application]
 
-config/name="Potion - Motion Puppet (pre-alpha)"
+config/name="Potion - Motion Puppet (prototype)"
 run/main_scene="res://node_2d.tscn"
 config/features=PackedStringArray("4.0", "Forward Plus")
-run/max_fps=30
+run/max_fps=120
 run/low_processor_mode=true
 boot_splash/show_image=false
 config/icon="res://potion_logo.png"
