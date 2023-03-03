@@ -1,12 +1,24 @@
-[gd_scene load_steps=4 format=3 uid="uid://3j1a36so1pnm"]
+[gd_scene load_steps=7 format=3 uid="uid://3j1a36so1pnm"]
 
 [ext_resource type="Script" path="res://line_drawing.gd" id="1_56mqs"]
 [ext_resource type="Texture2D" uid="uid://y2nbar5fmd7x" path="res://key_ctrl.png" id="2_x1xvw"]
 [ext_resource type="Texture2D" uid="uid://dlivmk6sfc6cr" path="res://key_shift.png" id="3_c8yxr"]
+[ext_resource type="Script" path="res://color_palette.gd" id="4_iaf63"]
+[ext_resource type="Script" path="res://fg.gd" id="5_exbh2"]
+[ext_resource type="Script" path="res://ColorSwatch.gd" id="5_kaysc"]
 
-[node name="Node2D" type="Node"]
+[node name="Node2D" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+mouse_default_cursor_shape = 3
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
 offset_left = 18.0
 offset_top = 123.0
 offset_right = 253.0
@@ -14,6 +26,7 @@ offset_bottom = 528.0
 mouse_filter = 2
 
 [node name="keys" type="Label" parent="."]
+layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
@@ -28,14 +41,15 @@ vertical_alignment = 1
 script = ExtResource("1_56mqs")
 
 [node name="KeyCtrl" type="Sprite2D" parent="."]
-position = Vector2(20, 626)
+position = Vector2(15, 43)
 texture = ExtResource("2_x1xvw")
 
 [node name="KeyShift" type="Sprite2D" parent="."]
-position = Vector2(20, 598)
+position = Vector2(15, 15)
 texture = ExtResource("3_c8yxr")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 0
 offset_left = 30.0
 offset_top = 27.0
 offset_right = 153.0
@@ -49,5 +63,71 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="Button" type="Button" parent="."]
+layout_mode = 0
 offset_right = 8.0
 offset_bottom = 8.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -26.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 8
+script = ExtResource("4_iaf63")
+
+[node name="fg" type="ColorPickerButton" parent="HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+keep_pressed_outside = true
+script = ExtResource("5_exbh2")
+
+[node name="VSeparator" type="VSeparator" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="HBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+script = ExtResource("5_kaysc")
+
+[node name="ColorRect2" type="ColorRect" parent="HBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+script = ExtResource("5_kaysc")
+
+[node name="ColorRect3" type="ColorRect" parent="HBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+color = Color(0.698039, 0.0941176, 0.113725, 1)
+script = ExtResource("5_kaysc")
+
+[node name="ColorRect4" type="ColorRect" parent="HBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+color = Color(0.360784, 0.462745, 0.14902, 1)
+script = ExtResource("5_kaysc")
+
+[node name="ColorRect5" type="ColorRect" parent="HBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+color = Color(0.470588, 0.811765, 0.878431, 1)
+script = ExtResource("5_kaysc")
+
+[node name="ColorRect6" type="ColorRect" parent="HBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+color = Color(0.47451, 0.372549, 0.196078, 1)
+script = ExtResource("5_kaysc")
+
+[connection signal="gui_input" from="HBoxContainer/ColorRect" to="HBoxContainer/ColorRect" method="_on_gui_input"]
+[connection signal="gui_input" from="HBoxContainer/ColorRect2" to="HBoxContainer/ColorRect2" method="_on_gui_input"]
+[connection signal="gui_input" from="HBoxContainer/ColorRect3" to="HBoxContainer/ColorRect3" method="_on_gui_input"]
+[connection signal="gui_input" from="HBoxContainer/ColorRect4" to="HBoxContainer/ColorRect4" method="_on_gui_input"]
+[connection signal="gui_input" from="HBoxContainer/ColorRect5" to="HBoxContainer/ColorRect5" method="_on_gui_input"]
+[connection signal="gui_input" from="HBoxContainer/ColorRect6" to="HBoxContainer/ColorRect6" method="_on_gui_input"]

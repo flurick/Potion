@@ -257,7 +257,9 @@ func _on_no_scale_pressed():
 
 func _on_add_2_pressed():
 	#add a new drawing and its icon to the scene
-	var drawing = Line2D.new()
+#	var drawing = Line2D.new()
+	
+	var drawing = load("res://lines.tscn").instantiate()
 	drawing.position = get_viewport().size * 0.5
 	get_parent().add_child(drawing)
 	add_icon(drawing, str("Drawing ", get_parent().get_child_count()) )

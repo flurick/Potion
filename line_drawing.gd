@@ -20,7 +20,8 @@ class Variable:
 	var value:Vector2
 	var points:Array
 	func _to_string():
-		return str(value, "@", points, "\n")
+#		return str(value, "@", points, "\n")
+		return str(points,"\n")
 
 var grabbed:Point
 var hovered:Point
@@ -33,7 +34,7 @@ var pen_down
 var move_key
 var link_key
 var edit_key
-func _unhandled_input(event):
+func _input(event):
 	
 	
 	if event is InputEventMouseMotion:
@@ -80,7 +81,7 @@ func _unhandled_input(event):
 				for i in range(grabbed.line.points.size()): #for index,strength in grabbed ...
 					#fall of towards the oposite end of the moved line
 					
-					grabbed.line.points[i] += event.relative*(i*0.01)
+					grabbed.line.points[i] += event.relative*(i*0.05)
 			
 			grabbed.line.set_point_position(grabbed.idx, event.position)
 			set_variable(grabbed, event.position)
@@ -95,6 +96,7 @@ func _unhandled_input(event):
 			#draw new line
 			if !active_line and pen_down:
 				active_line = Line2D.new()
+				active_line.default_color = $"../HBoxContainer/fg".color
 				active_line.width = 2
 				add_child(active_line)
 			#terminate if the pen is lifted
