@@ -134,11 +134,13 @@ func _input(event):
 		
 		if Input.is_action_pressed("position"):
 			for node in get_tree().get_nodes_in_group(group):
-				record_key(node, "position", m)
+				node.position += event.relative
+				record_key(node, "position", node.position)
 		
 		if Input.is_action_pressed("rotation"):	
 			for node in get_tree().get_nodes_in_group(group):
-				record_key(node, "rotation", m.x*0.02)
+				node.rotation += event.relative.x*0.02
+				record_key(node, "rotation", node.rotation)
 		
 		if Input.is_action_pressed("visible"):
 			for node in get_tree().get_nodes_in_group(group):
@@ -146,7 +148,8 @@ func _input(event):
 		
 		if Input.is_action_pressed("scale"):
 			for node in get_tree().get_nodes_in_group(group):
-				record_key(node, "scale", m*0.01)
+				node.scale += event.relative*0.01
+				record_key(node, "scale", node.scale)
 		
 	
 	if event.is_action("ui_page_up"):
@@ -259,7 +262,7 @@ func _on_add_2_pressed():
 	#add a new drawing and its icon to the scene
 #	var drawing = Line2D.new()
 	
-	var drawing = load("res://lines.tscn").instantiate()
+	var drawing = load("res://Drawing.tscn").instantiate()
 	drawing.position = get_viewport().size * 0.5
 	get_parent().add_child(drawing)
 	add_icon(drawing, str("Drawing ", get_parent().get_child_count()) )

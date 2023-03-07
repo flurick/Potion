@@ -1,7 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://cox601h0884rd"]
+[gd_scene load_steps=4 format=3 uid="uid://c8q7mb04i1fia"]
 
-[ext_resource type="PackedScene" uid="uid://c04d6oxj11brh" path="res://Gallery.tscn" id="1_03n6i"]
-[ext_resource type="PackedScene" uid="uid://3j1a36so1pnm" path="res://Draw.tscn" id="2_pmy55"]
+[ext_resource type="PackedScene" uid="uid://c3i7itea8r1cr" path="res://Gallery.tscn" id="1_03n6i"]
+[ext_resource type="PackedScene" uid="uid://3j1a36so1pnm" path="res://Drawing.tscn" id="2_pmy55"]
 [ext_resource type="PackedScene" uid="uid://s1ibsgb2hrak" path="res://Timeline.tscn" id="3_8o7st"]
 
 [node name="Control" type="Control"]
