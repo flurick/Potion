@@ -1,10 +1,10 @@
 [gd_scene load_steps=24 format=3 uid="uid://s1ibsgb2hrak"]
 
-[ext_resource type="Script" path="res://main.gd" id="1_vfhwu"]
-[ext_resource type="Script" path="res://AnimationPlayer.gd" id="2_y215d"]
-[ext_resource type="Texture2D" uid="uid://ck2nb3w88xjn2" path="res://drop_images_here.png" id="3_fyhgc"]
-[ext_resource type="Script" path="res://user_guide.gd" id="3_ts8js"]
-[ext_resource type="Texture2D" uid="uid://bdq722xgwoxbn" path="res://potion_logo.png" id="5_vbcbi"]
+[ext_resource type="Script" path="res://main.gd" id="1_owkxo"]
+[ext_resource type="Script" path="res://AnimationPlayer.gd" id="2_4ikk7"]
+[ext_resource type="Script" path="res://user_guide.gd" id="3_hfac3"]
+[ext_resource type="Texture2D" uid="uid://ck2nb3w88xjn2" path="res://drop_images_here.png" id="4_i0lrr"]
+[ext_resource type="Texture2D" uid="uid://bdq722xgwoxbn" path="res://potion_logo.png" id="5_54bjl"]
 
 [sub_resource type="Animation" id="Animation_b77ox"]
 length = 0.001
@@ -112,7 +112,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-script = ExtResource("1_vfhwu")
+script = ExtResource("1_owkxo")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 show_behind_parent = true
@@ -139,7 +139,7 @@ unique_name_in_owner = true
 libraries = {
 "": SubResource("AnimationLibrary_ny2x6")
 }
-script = ExtResource("2_y215d")
+script = ExtResource("2_4ikk7")
 
 [node name="Panel" type="Panel" parent="."]
 custom_minimum_size = Vector2(48, 56)
@@ -370,7 +370,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-script = ExtResource("3_ts8js")
+script = ExtResource("3_hfac3")
 metadata/_edit_lock_ = true
 
 [node name="DropImagesHere" type="TextureRect" parent="onboarding"]
@@ -387,7 +387,7 @@ offset_right = 128.0
 offset_bottom = 128.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("3_fyhgc")
+texture = ExtResource("4_i0lrr")
 
 [node name="Label" type="Label" parent="onboarding"]
 visible = false
@@ -438,7 +438,7 @@ flat = true
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 tooltip_text = "Add Drawing"
-icon = ExtResource("5_vbcbi")
+icon = ExtResource("5_54bjl")
 flat = true
 expand_icon = true
 

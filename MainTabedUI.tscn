@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://cox601h0884rd"]
+
+[ext_resource type="PackedScene" uid="uid://c04d6oxj11brh" path="res://Gallery.tscn" id="1_03n6i"]
+[ext_resource type="PackedScene" uid="uid://3j1a36so1pnm" path="res://Draw.tscn" id="2_pmy55"]
+[ext_resource type="PackedScene" uid="uid://s1ibsgb2hrak" path="res://Timeline.tscn" id="3_8o7st"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TabContainer" type="TabContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+tab_alignment = 1
+
+[node name="Gallery" parent="TabContainer" instance=ExtResource("1_03n6i")]
+layout_mode = 2
+
+[node name="Draw" parent="TabContainer" instance=ExtResource("2_pmy55")]
+visible = false
+layout_mode = 2
+
+[node name="Timeline" parent="TabContainer" instance=ExtResource("3_8o7st")]
+visible = false
+layout_mode = 2
